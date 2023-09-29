@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-17 
+FROM maven:3.8.3-openjdk-17 
 
 # copy the source tree and the pom.xml to our new container 
 COPY ./ ./  
