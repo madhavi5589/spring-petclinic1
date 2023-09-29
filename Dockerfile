@@ -1,7 +1,11 @@
-FROM ubuntu:22.04
-RUN apt update
-RUN apt install openjdk-11-jdk wget -y
-WORKDIR /app
-COPY target/spring-petclinic-3.1.0-SNAPSHOT.jar app.jar
-CMD ["java", "-jar", "app.jar"]
+FROM maven:3.6.3-jdk-8 
+
+# copy the source tree and the pom.xml to our new container 
+COPY ./ ./  
+
+# package our application code 
+RUN mvn clean package 
+
+# set the startup command to execute the jar 
+CMD ["java", "-jar", "target/spring-petclinic-3.1.0-SNAPSHOT.jar"]
 
